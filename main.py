@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import datetime
 import pandas_datareader as web
 
+from Shampoo import Shampoo
 from expSmoth import ExpSmoothing
 from myRLS import myRLS
 
@@ -90,11 +91,17 @@ def iceCream():
 
 
 
+
+
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     #seriesTest()
-    iceCream()
+    #iceCream()
     #exp = ExpSmoothing(0.5)
     #exp.expSmoothing()
+    sh = Shampoo()
+    sh.arma()
 
 
