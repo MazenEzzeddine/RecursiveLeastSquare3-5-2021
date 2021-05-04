@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import datetime
 import pandas_datareader as web
 
+from Regression import Regression
 from Shampoo import Shampoo
 from expSmoth import ExpSmoothing
 from myRLS import myRLS
@@ -59,7 +60,7 @@ def iceCream():
     df = y['production'].values
     test_size = len(df)
     lam = 0.95
-    num_vars = 3
+    num_vars = 7
     LS = myRLS(num_vars, lam)
     pred_x = []
     pred_y = []
@@ -71,7 +72,6 @@ def iceCream():
         y1 = df[t + num_vars]  # predict
         pred_x.append(t)
         pred_y.append(float(X * LS.w))
-
         print("index, prediction, output", t+num_vars+1,  float(X * LS.w), float(y1))
         pred_error.append(LS.get_error())
         LS.add_obs(X.T, y1)
@@ -99,9 +99,14 @@ def iceCream():
 if __name__ == '__main__':
     #seriesTest()
     #iceCream()
-    #exp = ExpSmoothing(0.5)
-    #exp.expSmoothing()
-    sh = Shampoo()
-    sh.arma()
+    # exp = ExpSmoothing(0.9)
+    # exp.expSmoothing()
+    p = Regression()
+    #p.create()
+    p.createRLS()
+
+
+    #sh = Shampoo()
+    #sh.arma()
 
 
