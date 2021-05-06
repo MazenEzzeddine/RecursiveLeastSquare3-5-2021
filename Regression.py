@@ -14,7 +14,7 @@ class Regression:
         # plt.style.use('seaborn')
         # mpl.rcParams['font.family'] = 'serif'
     def f(self, x):
-        return np.sin(x) + 0.5 * x
+        return np.sinc(x) #np.sin(x)*np.cos(x) + 0.5 * x**3
 
     def create_plot(self, x, y, styles, labels, axlabels):
         plt.figure(figsize=(10, 6))
@@ -36,7 +36,7 @@ class Regression:
 
 
     def createRLS(self):
-        x = np.linspace(-2 * np.pi, 2 * np.pi, 500)
+        x = np.linspace(-4 * np.pi, 4 * np.pi, 500)
 
         test_size = len(x)
         lam = 0.95
@@ -55,10 +55,12 @@ class Regression:
             print("index, prediction, output", t + num_vars + 1, float(X * LS.w), float(y1))
             pred_error.append(LS.get_error())
             LS.add_obs(X.T, y1)
-        ax = plt.plot(pred_x[0:], pred_y[0:], label='predicted')
-        ax = plt.plot(pred_x[0:], self.f(x[num_vars:]), label='actual')
-        _ = plt.plot(pred_x[0:], pred_error[0:], label='Error/residual')
-        # _ = plt.plot(x[num_vars:], self.create()[num_vars:], label='simple linear regression')
+        #ax = plt.plot(pred_x[0:], pred_y[0:], label='predicted')
+        #ax = plt.plot(pred_x[0:], self.f(x[num_vars:]), label='actual')
+        ax = plt.plot(pred_x[200:], pred_error[200:], label='Error/residual')
+        #_ = plt.plot(x[num_vars:], self.create()[num_vars:], label='simple linear regression')
+        #plt.title("prediction for the function  sin(x) + 0.5 * x")
+
         plt.legend()
         plt.show()
 

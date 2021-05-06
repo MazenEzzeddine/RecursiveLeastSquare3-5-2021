@@ -59,8 +59,8 @@ def iceCream():
     y = pd.DataFrame(df_ice_cream)
     df = y['production'].values
     test_size = len(df)
-    lam = 0.95
-    num_vars = 7
+    lam = 0.99
+    num_vars = 3
     LS = myRLS(num_vars, lam)
     pred_x = []
     pred_y = []
@@ -82,7 +82,7 @@ def iceCream():
     _ = plt.plot(pred_x[0:], pred_error[0:], label='Error/residual')
 
     plt.title("ice cream production prediction")
-    plt.text(60, 50, 'lag = 3, forget=0.95')
+    plt.text(60, 50, 'lag = 4, forget=0.99')
 
     #########################################################
 
@@ -95,10 +95,12 @@ def iceCream():
 
 
 
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     #seriesTest()
-    #iceCream()
+    #iceCream2()
     # exp = ExpSmoothing(0.9)
     # exp.expSmoothing()
     p = Regression()
@@ -106,7 +108,6 @@ if __name__ == '__main__':
     p.createRLS()
 
 
-    #sh = Shampoo()
-    #sh.arma()
+
 
 
